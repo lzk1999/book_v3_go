@@ -1,0 +1,28 @@
+app:
+  name: "web_app"
+  mode: "release"
+  version: v1.0.0
+  port: 8080
+mysql:
+  host: "127.0.0.1"
+  port: 3306
+  user: "root"
+  password: "12345678"
+  dbname: "shipsay"
+  max_open_conns: 200
+  max_idle_conns: 10
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  password: ""
+  db: 0
+  pool_size: 100
+#网站配置
+web:
+  name: "My Book"
+  #首页推荐ID
+  commend_ids: 4,5,6,7
+  #搜索限制条数 默认100
+  search_num: 100
+  txt_url: 'http://10.211.55.3/files/article/txt'
+  img_url: 'http://10.211.55.3/files/article/image'

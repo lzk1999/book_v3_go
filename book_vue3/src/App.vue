@@ -1,0 +1,62 @@
+<template>
+  <router-view class="root" />
+  <Footer></Footer>
+</template>
+
+<script>
+import { ref, onMounted, onBeforeMount } from 'vue'
+import { useRouter } from "vue-router";
+import axios from 'axios';
+import Footer from './components/footer/footer.vue'
+
+export default {
+  components: { Footer },
+  setup(props, content) {
+    let router = useRouter();
+    onMounted(() => {
+      axios
+        .get('/api/rootredirect')
+        .then((res) => {
+          if (res.data == '/') {
+          } else {
+            let newurl = location.href;
+            if (newurl.split('/').slice(3).join('/') == '') {
+              router.push(res.data);
+            }
+          }
+        })
+        .catch((res) => {
+          console.log(res)
+        })
+    })
+  },
+}
+</script>
+
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+}
+
+.root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.app {
+  min-height: 100vh;
+}
+</style>
